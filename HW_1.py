@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Generate Inputs (x)
-x = np.arange(0, 3*np.pi, 0.2);
+x = np.arange(0, 2*np.pi, 0.2);
 
 # Generate Wave Output (y)
 cos_wave = np.cos(x)
