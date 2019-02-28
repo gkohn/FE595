@@ -1,0 +1,36 @@
+# Import get and post requests
+from requests import post
+from requests import get
+
+# Create blank lists
+male = []
+female = []
+
+for x in range(0,49):
+    # Import Text From Website
+    page = get("https://theyfightcrime.org/")
+    text = page.text
+    
+    # Split text by paragraph tag
+    raw = text.split('<P>')
+    
+    # Identify the end point of the male sentence afer the paragraph tag
+    Male_End = raw[1].find(" She's")
+    
+    # Identify the end point of the female sentence afer the paragraph tag
+    Female_End = raw[1].find(" They")
+    
+    # Add male sentence to male list
+    male.append(raw[1][0:Male_End])
+    
+    # Add female sentence to female list
+    female.append(raw[1][Male_End:Female_End])
+
+# Save files
+with open('male.txt', 'w') as m:
+    for listitem in male:
+        m.write('%s\n' % listitem)
+        
+with open('female.txt', 'w') as f:
+    for listitem in female:
+        f.write('%s\n' % listitem)
