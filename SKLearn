@@ -1,0 +1,21 @@
+import pandas as pd
+from sklearn import datasets, linear_model
+reg = linear_model.LinearRegression
+
+# Load Data
+housing = datasets.load_boston()
+
+# Parse Variables
+val = housing.target
+data = housing.data
+
+# Develop model
+regr = linear_model.LinearRegression()
+model = regr.fit(data,val)
+
+# Compare coefficients for each variable
+coefs = pd.DataFrame(model.coef_)
+coefs = coefs.transpose()
+coefs.columns = housing.feature_names
+coefs = coefs.transpose()
+coefs = coefs.sort_values(by=0)
